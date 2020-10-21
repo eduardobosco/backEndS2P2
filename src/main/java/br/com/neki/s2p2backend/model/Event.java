@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -44,7 +46,7 @@ public class Event implements Serializable {
 
 
 	public Event(Integer id, String title, String description, String notification, Instant initial_Date,
-			Instant end_Date, String repeat, String reason, Boolean manager_notification) {
+			Instant end_Date, String repeat, String reason, Boolean manager_notification, Collaborator collaborator) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -55,7 +57,12 @@ public class Event implements Serializable {
 		this.repeat = repeat;
 		this.reason = reason;
 		this.manager_notification = manager_notification;
+		this.collaborator = collaborator;
 	}
+	
+	@ManyToOne()
+	@JoinColumn(name="id_collaborator")
+	private Collaborator collaborator;
 
 
 	public Integer getId() {
@@ -145,6 +152,16 @@ public class Event implements Serializable {
 
 	public void setManager_notification(Boolean manager_notification) {
 		this.manager_notification = manager_notification;
+	}
+
+
+	public Collaborator getCollaborator() {
+		return collaborator;
+	}
+
+
+	public void setCollaborator(Collaborator collaborator) {
+		this.collaborator = collaborator;
 	}
 
 
