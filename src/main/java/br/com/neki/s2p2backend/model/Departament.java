@@ -14,65 +14,47 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "COLLABORATOR")
+@Table(name = "DEPARTAMENT")
 
 
-public class Collaborator implements Serializable {
+public class Departament implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	private String nome;
+	private String departamentName;
 	
-	private String c_password;
-		
-	
-	public Collaborator () {}
+	public Departament() {
+	}
 
-
-	public Collaborator(Integer id, String nome, String c_password) {
+	public Departament(Integer id, String nome, String departamentName) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.c_password = c_password;
-		
+		this.departamentName = departamentName;
 	}
 	
-	
 	@JsonIgnore
-	@OneToMany(mappedBy = "collaborator")
-	private List<Event> event = new ArrayList<>();
-
+	@OneToMany(mappedBy = "departament")
+	private List<Employee> employee = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public String getNome() {
-		return nome;
+
+	public String getDepartamentName() {
+		return departamentName;
 	}
 
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDepartamentName(String departamentName) {
+		this.departamentName = departamentName;
 	}
-
-	public String getC_password() {
-		return c_password;
-	}
-
-
-	public void setC_password(String c_password) {
-		this.c_password = c_password;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -82,7 +64,6 @@ public class Collaborator implements Serializable {
 		return result;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -91,7 +72,7 @@ public class Collaborator implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Collaborator other = (Collaborator) obj;
+		Departament other = (Departament) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -99,7 +80,7 @@ public class Collaborator implements Serializable {
 			return false;
 		return true;
 	}
-
-
 	
+	
+
 }

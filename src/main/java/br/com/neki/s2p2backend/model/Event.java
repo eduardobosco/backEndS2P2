@@ -3,12 +3,15 @@ package br.com.neki.s2p2backend.model;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -27,7 +30,7 @@ public class Event implements Serializable {
 	
 	private String description;
 	
-	private String notification;
+	private String remember;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant initial_Date;
@@ -41,30 +44,51 @@ public class Event implements Serializable {
 	
 	private Boolean manager_notification;
 	
+	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="id_notification", referencedColumnName="id")
+	private Notification notification;
+	
+	@ManyToOne()
+	@JoinColumn(name="id_employee")
+	private Employee employee;
+	
 	
 	public Event () {}
-
-
-	public Event(Integer id, String title, String description, String notification, Instant initial_Date,
-			Instant end_Date, String repeat, String reason, Boolean manager_notification, Collaborator collaborator) {
+	
+	public Event(Integer id, String title, String description, String remember, Instant initial_Date,
+			Instant end_Date, String repeat, String reason, Boolean manager_notification, Employee employee) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.notification = notification;
+		this.remember = remember;
 		this.initial_Date = initial_Date;
 		this.end_Date = end_Date;
 		this.repeat = repeat;
 		this.reason = reason;
 		this.manager_notification = manager_notification;
-		this.collaborator = collaborator;
+		this.employee = employee;
+
+	}
+
+
+	public Event(Integer id, String title, String description, String remember, Instant initial_Date,
+			Instant end_Date, String repeat, String reason, Boolean manager_notification, Employee employee, Notification notification) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.remember = remember;
+		this.initial_Date = initial_Date;
+		this.end_Date = end_Date;
+		this.repeat = repeat;
+		this.reason = reason;
+		this.manager_notification = manager_notification;
+		this.employee = employee;
+		this.notification = notification;
 	}
 	
-	@ManyToOne()
-	@JoinColumn(name="id_collaborator")
-	private Collaborator collaborator;
-
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -95,13 +119,13 @@ public class Event implements Serializable {
 	}
 
 
-	public String getNotification() {
-		return notification;
+	public String getRemember() {
+		return remember;
 	}
 
 
-	public void setNotification(String notification) {
-		this.notification = notification;
+	public void setRemember(String remember) {
+		this.remember = remember;
 	}
 
 
@@ -155,13 +179,28 @@ public class Event implements Serializable {
 	}
 
 
-	public Collaborator getCollaborator() {
-		return collaborator;
+	public Employee getEmployee() {
+		return employee;
 	}
 
 
-	public void setCollaborator(Collaborator collaborator) {
-		this.collaborator = collaborator;
+	public void setCollaborator(Employee employee) {
+		this.employee = employee;
+	}
+
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 
