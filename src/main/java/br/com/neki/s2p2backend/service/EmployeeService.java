@@ -43,8 +43,8 @@ public class EmployeeService {
 
 		Employee employeeNoBanco = listarPorId(id);
 
-		if (employee.getNome() != null) {
-			employeeNoBanco.setNome(employee.getNome());
+		if (employee.getName() != null) {
+			employeeNoBanco.setName(employee.getName());
 		}
 
 		if (employee.getC_password() != null) {

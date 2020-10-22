@@ -28,7 +28,7 @@ public class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	private String nome;
+	private String name;
 	
 	private String c_password;
 	
@@ -50,10 +50,10 @@ public class Employee implements Serializable {
 	public Employee () {}
 	
 
-	public Employee(Integer id, String nome, String c_password, Role role, Departament departament) {
+	public Employee(Integer id, String name, String c_password, Role role, Departament departament) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.name = name;
 		this.c_password = c_password;
 		this.role = role;
 		this.departament = departament;
@@ -68,13 +68,13 @@ public class Employee implements Serializable {
 		this.id = id;
 	}
 	
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getC_password() {
