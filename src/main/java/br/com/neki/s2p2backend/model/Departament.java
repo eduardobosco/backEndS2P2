@@ -30,7 +30,7 @@ public class Departament implements Serializable {
 	public Departament() {
 	}
 
-	public Departament(Integer id, String nome, String departamentName) {
+	public Departament(Integer id, String departamentName) {
 		super();
 		this.id = id;
 		this.departamentName = departamentName;
