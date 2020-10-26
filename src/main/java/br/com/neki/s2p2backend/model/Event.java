@@ -45,7 +45,7 @@ public class Event implements Serializable {
 	private Boolean manager_notification;
 	
 	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_notification", referencedColumnName="id")
+/*	@JoinColumn(name="id_notification", referencedColumnName="id")*/
 	private Notification notification;
 	
 	@ManyToOne()
