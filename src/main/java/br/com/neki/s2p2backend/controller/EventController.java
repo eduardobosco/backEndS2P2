@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.neki.s2p2backend.exception.EventNotFoundException;
 import br.com.neki.s2p2backend.exception.ParametroObrigatorioException;
 import br.com.neki.s2p2backend.model.Event;
+import br.com.neki.s2p2backend.model.dto.EventDTO;
 import br.com.neki.s2p2backend.service.EventService;
 
 @RestController
@@ -31,7 +32,7 @@ public class EventController {
 	private EventService eventService;
 
 	@PostMapping
-	public ResponseEntity<Void> inserir(@Valid @RequestBody Event event) {
+	public ResponseEntity<Void> inserir(@Valid @RequestBody EventDTO event) {
 		eventService.inserir(event);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}

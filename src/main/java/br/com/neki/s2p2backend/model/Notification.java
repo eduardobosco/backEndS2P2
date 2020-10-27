@@ -7,8 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,10 +28,6 @@ public class Notification implements Serializable {
 	
 	private String notification_Status;
 	
-	@ManyToOne()
-	@JoinColumn(name="id_employee")
-	private Employee employee;
-	
 	
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
@@ -53,14 +47,13 @@ public class Notification implements Serializable {
 		this.notification_Status = notification_Status;
 	}
 
-	public Notification(Integer id, String manager_Comment, String notification_Status, Event event, Employee employee 
+	public Notification(Integer id, String manager_Comment, String notification_Status, Event event 
 			) {
 		super();
 		this.id = id;
 		this.manager_Comment = manager_Comment;
 		this.notification_Status = notification_Status;
 		this.event = event;
-		this.employee = employee;
 
 	}
 
@@ -92,14 +85,6 @@ public class Notification implements Serializable {
 		return event;
 	}
 
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
 
 	@Override
 	public int hashCode() {

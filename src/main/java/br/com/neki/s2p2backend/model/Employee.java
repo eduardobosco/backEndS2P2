@@ -42,10 +42,6 @@ public class Employee implements Serializable {
 	@OneToMany(mappedBy = "employee")
 	private List<Event> event = new ArrayList<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "employee")
-	private List<Notification> notification = new ArrayList<>();
-
 		
 	public Employee () {}
 	
@@ -112,19 +108,6 @@ public class Employee implements Serializable {
 	}
 
 
-	public void setEvent(List<Event> event) {
-		this.event = event;
-	}
-
-
-	public List<Notification> getNotification() {
-		return notification;
-	}
-
-
-	public void setNotification(List<Notification> notification) {
-		this.notification = notification;
-	}
 
 
 	@Override
