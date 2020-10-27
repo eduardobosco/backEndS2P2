@@ -108,5 +108,10 @@ public class EventService {
 		eventRepository.delete(eventNoBanco);
 	}
 
+	public List<Event> listarPorKey(Integer key) {
+		List<Event> events = eventRepository.events(key);
+		return events;
+	}
+
 	
 }
