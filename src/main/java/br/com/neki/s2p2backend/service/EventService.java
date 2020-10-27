@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import br.com.neki.s2p2backend.exception.EventNotFoundException;
 import br.com.neki.s2p2backend.exception.ParametroObrigatorioException;
+import br.com.neki.s2p2backend.model.Employee;
 import br.com.neki.s2p2backend.model.Event;
+import br.com.neki.s2p2backend.model.Notification;
+import br.com.neki.s2p2backend.model.dto.EventDTO;
+import br.com.neki.s2p2backend.respository.EmployeeRepository;
 import br.com.neki.s2p2backend.respository.EventRepository;
 
 @Service
@@ -17,7 +21,14 @@ public class EventService {
 	@Autowired
 	private EventRepository eventRepository;
 	
-	public Event inserir(Event event) {
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	public Event inserir(EventDTO eventDTO) {
+		
+			Event event = new Event();
+			copyDTOtoEntity(eventDTO, event);
+	
 		Event eventSalvoNoBd = eventRepository.save(event);
 		return eventSalvoNoBd;
 
@@ -79,5 +90,30 @@ public class EventService {
 		eventRepository.delete(eventNoBanco);
 	}
 
+	public void copyDTOtoEntity(EventDTO eventDTO, Event event) {
+		event.setTitle(eventDTO.getTitle());
+		
+		event.setDescription(eventDTO.getDescription());
+		
+		event.setInitial_Date(eventDTO.getInitial_Date());
+		
+		event.setRemember(eventDTO.getRemember());
+		
+		event.setEnd_Date(eventDTO.getEnd_Date());
+		
+		event.setRepeat(eventDTO.getRepeat());
+		
+		event.setReason(eventDTO.getReason());
+		
+		Employee employee = employeeRepository.getOne(eventDTO.getId_employee());
+		
+		event.setEmployee(employee);
+		
+		if(eventDTO.getManager_notification()) {
+			Notification notifications = new Notification();
+			event.setNotification(notifications);
+		}
+		
+	}
 	
 }

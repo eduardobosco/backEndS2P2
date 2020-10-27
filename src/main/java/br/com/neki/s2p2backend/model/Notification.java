@@ -25,7 +25,7 @@ public class Notification implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+		
 	private String manager_Comment;
 	
 	private String notification_Status;
