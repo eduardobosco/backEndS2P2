@@ -11,5 +11,8 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 	
 	@Query(value="SELECT * FROM EVENT WHERE ID_EMPLOYEE = :id_employee", nativeQuery=true)
 	List<Event> events(Integer id_employee);
+	
+	@Query(value="SELECT * FROM EVENT WHERE ID_EMPLOYEE = :id_employee AND MANAGER_NOTIFICATION=TRUE", nativeQuery=true)
+	List<Event> notifications (Integer id_employee);
 
 }

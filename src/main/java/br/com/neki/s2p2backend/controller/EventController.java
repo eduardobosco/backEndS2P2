@@ -62,6 +62,13 @@ public class EventController {
 
 	}
 
+	@GetMapping("/notifications/{key}")
+	public ResponseEntity<List<Event>>listarPorNotifications(@PathVariable Integer key) throws EventNotFoundException {
+		List<Event> event = eventService.listarPorNotifications(key);
+
+		return ResponseEntity.ok().body(event);
+
+	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> substituir(@PathVariable Integer id, @RequestBody(required = true) Event event)

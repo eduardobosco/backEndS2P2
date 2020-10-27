@@ -113,5 +113,10 @@ public class EventService {
 		return events;
 	}
 
+	public List<Event> listarPorNotifications(Integer key) {
+		List<Event> events = eventRepository.notifications(key);
+		return events;
+	}
+
 	
 }
