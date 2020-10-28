@@ -30,7 +30,6 @@ public class EventService {
 		
 		Event eventSalvoNoBd = eventRepository.save(event);
 		return eventSalvoNoBd;
-
 	}
 
 	private void copyDTOtoEntity(EventDTO eventDTO, Event event) {
@@ -44,6 +43,7 @@ public class EventService {
 		event.setManager_notification(eventDTO.getManager_notification());
 		
 		Employee employee = employeeRepository.getOne(eventDTO.getId_employee());
+		
 		event.setEmployee(employee);
 		if(eventDTO.getManager_notification()) {
 			Notification notifications = new Notification(null,"","", event);
@@ -80,8 +80,8 @@ public class EventService {
 			eventNoBanco.setDescription(event.getDescription());
 		}
 		
-		if (event.getNotification() != null) {
-			eventNoBanco.setNotification(event.getNotification());
+		if (event.getRemember() != null) {
+			eventNoBanco.setRemember(event.getRemember());
 		}
 		
 		if (event.getInitial_Date() != null) {
