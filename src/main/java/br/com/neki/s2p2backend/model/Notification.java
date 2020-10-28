@@ -34,7 +34,6 @@ public class Notification implements Serializable {
 	@MapsId
 	private Event event;
 	
-	
 	public Notification() {
 		
 	}
