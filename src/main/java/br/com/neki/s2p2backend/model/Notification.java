@@ -110,6 +110,4 @@ public class Notification implements Serializable {
 		return true;
 	}
 	
-	
-
 }

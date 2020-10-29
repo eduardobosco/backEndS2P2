@@ -81,5 +81,4 @@ public class EventController {
 	public void deletar(@PathVariable Integer id) throws EventNotFoundException {
 		eventService.deletar(id);
 	}
-
 }
