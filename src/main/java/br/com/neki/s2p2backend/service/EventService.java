@@ -117,6 +117,4 @@ public class EventService {
 		List<Event> events = eventRepository.notifications(key);
 		return events;
 	}
-
-	
 }
