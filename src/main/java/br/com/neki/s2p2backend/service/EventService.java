@@ -65,7 +65,7 @@ public class EventService {
 		throw new EventNotFoundException("Event com id " + id + " não encontrada");
 	}
 
-	public Event substituir(Integer id, Event event, EventDTO eventDTO)
+	public Event substituir(Integer id, Event event)
 			throws ParametroObrigatorioException, EventNotFoundException {
 		if (event == null)
 			throw new ParametroObrigatorioException("Campo 'event' é obrigatório");
@@ -98,9 +98,6 @@ public class EventService {
 		}
 		if (event.getManager_notification() != null) {
 			eventNoBanco.setManager_notification(event.getManager_notification());
-		}
-		if (eventDTO.getManager_notification()) {
-			copyDTOtoEntity(eventDTO, event);
 		}
 
 		return eventRepository.save(eventNoBanco);
