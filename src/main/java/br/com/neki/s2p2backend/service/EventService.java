@@ -65,13 +65,14 @@ public class EventService {
 		throw new EventNotFoundException("Event com id " + id + " não encontrada");
 	}
 
-	public Event substituir(Integer id, Event event)
+	public Event substituir(Integer id, Event event, EventDTO eventDTO)
 			throws ParametroObrigatorioException, EventNotFoundException {
 		if (event == null)
 			throw new ParametroObrigatorioException("Campo 'event' é obrigatório");
 
 		Event eventNoBanco = listarPorId(id);
-
+		copyDTOtoEntity(eventDTO, event);
+		
 		if (event.getTitle() != null) {
 			eventNoBanco.setTitle(event.getTitle());
 		}
