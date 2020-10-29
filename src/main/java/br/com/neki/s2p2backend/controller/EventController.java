@@ -71,7 +71,7 @@ public class EventController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> substituir(@PathVariable Integer id, @RequestBody(required = true) Event event , EventDTO eventDTO)
+	public ResponseEntity<Void> substituir(@PathVariable Integer id, @RequestBody(required = true) Event event, EventDTO eventDTO)
 			throws EventNotFoundException, ParametroObrigatorioException {
 		eventService.substituir(id, event, eventDTO);
 		return new ResponseEntity<Void>(HttpStatus.OK);

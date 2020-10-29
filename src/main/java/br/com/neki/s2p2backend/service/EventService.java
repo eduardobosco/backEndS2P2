@@ -71,8 +71,7 @@ public class EventService {
 			throw new ParametroObrigatorioException("Campo 'event' é obrigatório");
 
 		Event eventNoBanco = listarPorId(id);
-		copyDTOtoEntity(eventDTO, event);
-		
+
 		if (event.getTitle() != null) {
 			eventNoBanco.setTitle(event.getTitle());
 		}
@@ -99,6 +98,9 @@ public class EventService {
 		}
 		if (event.getManager_notification() != null) {
 			eventNoBanco.setManager_notification(event.getManager_notification());
+		}
+		if (eventDTO.getManager_notification()) {
+			copyDTOtoEntity(eventDTO, event);
 		}
 
 		return eventRepository.save(eventNoBanco);
