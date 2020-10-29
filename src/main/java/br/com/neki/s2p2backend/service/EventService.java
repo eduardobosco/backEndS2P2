@@ -46,7 +46,7 @@ public class EventService {
 		
 		event.setEmployee(employee);
 		if(eventDTO.getManager_notification()) {
-			Notification notifications = new Notification(null,"","", event);
+			Notification notifications = new Notification(null,"","Pendente", event);
 			event.setNotification(notifications);
 			System.out.println("oi");
 		}
